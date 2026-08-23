@@ -134,3 +134,23 @@ Formato Smart Commit: `<ISSUE_KEY> <tipo>: <descripción en presente>`
 - Ejemplo: `PROYEC-13 ci: Agrega pipeline de GitHub Actions y tests unitarios`
 
 **Limpieza:** Ramas eliminadas automáticamente tras el merge a main.
+
+---
+
+## 6. Estándares Complementarios de Desarrollo, Calidad y UI
+
+### Manejo de Flujo y Errores de Negocio
+- No lanzar excepciones para lógica de negocio esperada. Usar el patrón `Result<T>` con errores explícitos (Code, Description).
+- Mapear validaciones fallidas de FluentValidation a respuestas HTTP 400 con formato RFC 7807 (ProblemDetails).
+
+### Migraciones de Base de Datos (EF Core)
+- Cada cambio en entidades o configuraciones Fluent API requiere generar su migración formal con `dotnet ef migrations add <Nombre>`.
+
+### Convención de Pruebas Unitarias
+- Estructura obligatoria: Arrange, Act, Assert.
+- Nomenclatura: `NombreMetodo_ResultadoEsperado_BajoCondicion`.
+- Aislamiento total mediante dobles de prueba (Moq).
+
+### Estándares de UI & Frontend
+- Interfaces sobrias y refinadas: tipografía clara, espaciado modular consistente.
+- Estilos visuales sutiles: sombras tenues, ausencia de halos/brillos exagerados y transiciones limpias.
